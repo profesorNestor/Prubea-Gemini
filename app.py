@@ -40,7 +40,7 @@ st.markdown("""
 
 # Introducción
 st.markdown('<div class="big-title">💬 Asistente Educativo con Gemini</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-title">Desarrollado para apoyar el aprendizaje de matemáticas, física y programación</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub-title">Desarrollado por el profesor Néstor Fabio Montoya para apoyar el aprendizaje de los estudiantes de la institución educativa GABO y de la universidad del Valle sede cartago</div>', unsafe_allow_html=True)
 
 # Entrada del usuario
 pregunta = st.text_area("✏️ Escribe tu pregunta aquí", height=120)
