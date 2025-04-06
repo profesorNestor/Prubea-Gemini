@@ -1,0 +1,43 @@
+Pregunta:
+que son listas en python
+Respuesta:
+En Python, una lista es una estructura de datos ordenada y mutable que puede contener una colección de elementos de diferentes tipos de datos. Piensa en ella como un contenedor que guarda cosas en un orden específico, y puedes cambiar el contenido de ese contenedor después de crearlo.
+
+Aquí tienes un desglose de las características clave de las listas en Python:
+
+* **Ordenadas:** Los elementos de una lista mantienen el orden en el que se insertaron. El primer elemento añadido será el primero en la lista, el segundo será el segundo, y así sucesivamente.  Esto significa que puedes acceder a los elementos por su posición.
+
+* **Mutables:** Las listas se pueden modificar después de su creación. Puedes agregar, eliminar o cambiar elementos.
+
+* **Heterogéneas:**  Una lista puede contener elementos de diferentes tipos de datos. Puedes tener números, cadenas de texto, booleanos, otras listas (listas anidadas), e incluso objetos más complejos, todo dentro de la misma lista.
+
+* **Indexadas:**  Cada elemento de una lista tiene un índice asociado, que comienza desde 0 para el primer elemento, 1 para el segundo, y así sucesivamente.  Esto te permite acceder a elementos específicos utilizando su índice.
+
+* **Delimitadas por corchetes:** Las listas se definen utilizando corchetes `[]` y los elementos se separan por comas.
+
+**Ejemplo:**
+
+```python
+mi_lista = [1, "hola", 3.14, True, [2, 4, 6]]
+
+print(mi_lista[0])  # Salida: 1
+print(mi_lista[1])  # Salida: hola
+print(mi_lista[-1]) # Salida: [2, 4, 6] (accede al último elemento)
+
+mi_lista.append("nuevo elemento")  # Agrega un elemento al final
+print(mi_lista) # Salida: [1, "hola", 3.14, True, [2, 4, 6], "nuevo elemento"]
+
+mi_lista[0] = 10  # Cambia el valor del primer elemento
+print(mi_lista) # Salida: [10, "hola", 3.14, True, [2, 4, 6], "nuevo elemento"]
+
+del mi_lista[2]   # Elimina el elemento en el índice 2
+print(mi_lista) # Salida: [10, "hola", True, [2, 4, 6], "nuevo elemento"]
+```
+
+**Diferencias clave entre listas y tuplas:**
+
+Aunque tanto las listas como las tuplas son secuencias ordenadas, la principal diferencia es que las **listas son mutables**, mientras que las **tuplas son inmutables**. Una vez que se crea una tupla, no se pueden agregar, eliminar o modificar sus elementos. Las tuplas se definen utilizando paréntesis `()`.
+
+**En resumen:** Las listas en Python son versátiles y se utilizan ampliamente para almacenar y manipular colecciones de datos.  Su mutabilidad las hace especialmente útiles cuando necesitas modificar los datos después de la creación.
+
+------------------------------------------------------------
