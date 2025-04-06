@@ -46,8 +46,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Título e introducción
-st.markdown('<div class="title"> ✨ Asistente Educativo con IA 🧠</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">Una herramienta didáctica para estudiantes de de secundaria y universidad. </div>', unsafe_allow_html=True)
+st.markdown('<div class="title">✨ Asistente Educativo con IA 🧠</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Una herramienta didáctica para estudiantes de secundaria y universidad.</div>', unsafe_allow_html=True)
 
 st.markdown("""<div class='info-box'>
 Soy **M.Sc. Néstor Fabio Montoya Palacios**, docente de **matemáticas, física y programación**.  
@@ -59,6 +59,7 @@ Puedes preguntarme sobre temas académicos y científicos, y si es posible, la I
 st.markdown("### ✏️ Escribe tu pregunta:")
 pregunta = st.text_area("", height=100, placeholder="Ejemplo: ¿Qué es una derivada?")
 
+# Botón de consulta
 if st.button("🔍 Consultar"):
     if pregunta.strip() == "":
         st.warning("Por favor, escribe una pregunta.")
@@ -72,14 +73,17 @@ if st.button("🔍 Consultar"):
 
                 # Guardar historial
                 with open("historial_estudiantes.txt", "a", encoding="utf-8") as f:
-                    f.write(f"Pregunta:
+                    f.write(f"""
+Pregunta:
 {pregunta}
+
 Respuesta:
 {texto}
-{'-'*60}
-")
 
-                # Detectar código
+{'-'*60}
+""")
+
+                # Buscar y ejecutar código Python dentro de la respuesta
                 bloques = re.findall(r"```python(.*?)```", texto, re.DOTALL)
                 if bloques:
                     for bloque in bloques:
