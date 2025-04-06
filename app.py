@@ -50,7 +50,7 @@ st.markdown('<div class="title">✨ Asistente Educativo con IA 🧠</div>', unsa
 st.markdown('<div class="subtitle">Una herramienta didáctica para estudiantes de secundaria y universidad.</div>', unsafe_allow_html=True)
 
 st.markdown("""<div class='info-box'>
-Soy **M.Sc. Néstor Fabio Montoya Palacios**, docente de **matemáticas, física y programación**.  
+Soy **Néstor Fabio Montoya Palacios**, docente de **matemáticas, física y programación**.  
 He creado esta aplicación con fines educativos para que explores conceptos, resuelvas dudas y avances en tu aprendizaje con ayuda de **inteligencia artificial**.  
 Puedes preguntarme sobre temas académicos y científicos, y si es posible, la IA responderá con ejemplos y código.
 </div>""", unsafe_allow_html=True)
