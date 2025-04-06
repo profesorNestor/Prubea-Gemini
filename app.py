@@ -1,51 +1,65 @@
 import streamlit as st
 import google.generativeai as genai
 import re
-import os
 
-# Configurar API Key (ocúltala en producción)
+# Configurar API Key
 genai.configure(api_key="AIzaSyCxEJH-IffKIu3CiR-2-OfZ1vbETEpeteY")
 modelo = genai.GenerativeModel("models/gemini-1.5-pro")
 
-# Configuración de la página
-st.set_page_config(page_title="Asistente IA Educativo", page_icon="📘", layout="wide")
+# Configuración general
+st.set_page_config(page_title="Asistente Educativo con IA", page_icon="🧠", layout="centered")
 
-# Estilos personalizados
+# Estilos modernos para fines educativos
 st.markdown("""
     <style>
-    .stApp {{
-        background-color: #f5f9ff;
+    .stApp {
+        background: linear-gradient(to right, #f0f4f8, #d9e8ff);
         font-family: 'Segoe UI', sans-serif;
-    }}
-    .big-title {{
+        color: #1a1a1a;
+    }
+    .title {
+        font-size: 2.3rem;
+        font-weight: bold;
+        color: #004080;
         text-align: center;
-        font-size: 2.5rem;
-        color: #007bff;
         margin-bottom: 0.5rem;
-    }}
-    .sub-title {{
-        text-align: center;
+    }
+    .subtitle {
         font-size: 1.2rem;
-        color: #555;
+        text-align: center;
+        color: #333;
         margin-bottom: 2rem;
-    }}
-    .firma {{
-        text-align: right;
+    }
+    .info-box {
+        background-color: #ffffffaa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+    }
+    .footer {
         font-size: 0.9rem;
-        color: #888;
-        margin-top: 2rem;
-    }}
+        text-align: center;
+        margin-top: 30px;
+        color: #555;
+    }
     </style>
 """, unsafe_allow_html=True)
 
-# Introducción
-st.markdown('<div class="big-title">💬 Asistente Educativo con Gemini</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-title">Desarrollado por el profesor Néstor Fabio Montoya para apoyar el aprendizaje de los estudiantes de la institución educativa GABO y de la universidad del Valle sede cartago</div>', unsafe_allow_html=True)
+# Título e introducción
+st.markdown('<div class="title"> ✨ Asistente Educativo con IA 🧠</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Una herramienta didáctica para estudiantes de de secundaria y universidad. </div>', unsafe_allow_html=True)
+
+st.markdown("""<div class='info-box'>
+Soy **M.Sc. Néstor Fabio Montoya Palacios**, docente de **matemáticas, física y programación**.  
+He creado esta aplicación con fines educativos para que explores conceptos, resuelvas dudas y avances en tu aprendizaje con ayuda de **inteligencia artificial**.  
+Puedes preguntarme sobre temas académicos y científicos, y si es posible, la IA responderá con ejemplos y código.
+</div>""", unsafe_allow_html=True)
 
 # Entrada del usuario
-pregunta = st.text_area("✏️ Escribe tu pregunta aquí", height=120)
+st.markdown("### ✏️ Escribe tu pregunta:")
+pregunta = st.text_area("", height=100, placeholder="Ejemplo: ¿Qué es una derivada?")
 
-if st.button("🔍 Consultar a Gemini"):
+if st.button("🔍 Consultar"):
     if pregunta.strip() == "":
         st.warning("Por favor, escribe una pregunta.")
     else:
@@ -56,15 +70,20 @@ if st.button("🔍 Consultar a Gemini"):
                 st.markdown("### 📘 Respuesta de Gemini:")
                 st.markdown(texto)
 
-                # Guardar pregunta y respuesta
-                with open("historial_gemini.txt", "a", encoding="utf-8") as f:
-                    f.write(f"Pregunta:\n{pregunta}\nRespuesta:\n{texto}\n{'-'*60}\n")
+                # Guardar historial
+                with open("historial_estudiantes.txt", "a", encoding="utf-8") as f:
+                    f.write(f"Pregunta:
+{pregunta}
+Respuesta:
+{texto}
+{'-'*60}
+")
 
-                # Detectar y ejecutar código si existe
+                # Detectar código
                 bloques = re.findall(r"```python(.*?)```", texto, re.DOTALL)
                 if bloques:
                     for bloque in bloques:
-                        st.markdown("### ⚙️ Ejecutando código generado:")
+                        st.markdown("### ⚙️ Código detectado:")
                         st.code(bloque.strip(), language="python")
                         try:
                             exec(bloque.strip(), globals())
@@ -75,5 +94,5 @@ if st.button("🔍 Consultar a Gemini"):
             except Exception as e:
                 st.error(f"Ocurrió un error consultando a Gemini: {e}")
 
-# Firma
-st.markdown('<div class="firma">M.Sc. Néstor Fabio Montoya Palacios<br>Docente e Investigador</div>', unsafe_allow_html=True)
+# Pie de página
+st.markdown('<div class="footer">Universidad del Valle | Universidad Tecnológica de Pereira | Institución Educativa Gabo<br>Con fines netamente educativos. © 2025</div>', unsafe_allow_html=True)
